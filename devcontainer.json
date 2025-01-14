@@ -1,0 +1,28 @@
+{
+    "name": "Python Jupyter + Azure CLI",
+    "image": "mcr.microsoft.com/devcontainers/python:3.10", 
+    "features": {
+      "ghcr.io/devcontainers/features/azure-cli:1": {},
+      "ghcr.io/devcontainers/features/python:1": {
+        "version": "3.10"
+      }
+    },
+    "customizations": {
+      "vscode": {
+        "settings": {
+          "python.defaultInterpreterPath": "/usr/local/bin/python",
+          "python.languageServer": "Default"
+        },
+        "extensions": [
+          "ms-python.python",
+          "ms-toolsai.jupyter"
+        ]
+      }
+    },
+    "postCreateCommand": "pip install -r requirements.txt",
+    "remoteUser": "vscode",
+    "mounts": [
+      "source=${localWorkspaceFolder}/requirements.txt,target=/workspace/requirements.txt,type=bind,consistency=cached"
+    ]
+  }
+  
