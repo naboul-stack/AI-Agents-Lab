@@ -19,7 +19,7 @@
         ]
       }
     },
-    "postCreateCommand": "pip install -r requirements.txt",
+    "postCreateCommand": "pip install -r requirements.txt && az extension add -n ml",
     "remoteUser": "vscode",
     "mounts": [
       "source=${localWorkspaceFolder}/requirements.txt,target=/workspace/requirements.txt,type=bind,consistency=cached"
