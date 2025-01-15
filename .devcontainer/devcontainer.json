@@ -1,5 +1,5 @@
 {
-    "name": "Python Jupyter + Azure CLI",
+    "name": "AI Agents Lab",
     "image": "mcr.microsoft.com/devcontainers/python:3.10", 
     "features": {
       "ghcr.io/devcontainers/features/azure-cli:1": {},
@@ -19,7 +19,7 @@
         ]
       }
     },
-    "postCreateCommand": "pip install -r requirements.txt",
+    "postCreateCommand": "pip install -r requirements.txt && az extension add -n ml",
     "remoteUser": "vscode",
     "mounts": [
       "source=${localWorkspaceFolder}/requirements.txt,target=/workspace/requirements.txt,type=bind,consistency=cached"
