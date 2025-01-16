@@ -46,17 +46,23 @@ In order to authenticate and execute the notebooks follow the steps below.
 
 👉 All notebooks are located  in the **C:\lab** directory.
 
-Open this directory in **Visual Studio Code**, and select from the table below the labs which you want to follow.
+Open this directory in **Visual Studio Code**, and select the notebook **lab00-intro+setup.ipynb**.
+
+You need to select a **Python kernel** to execute the notebooks. There is already Python installed, with all the required libraries installed.
+Select this kernel, before executing any code.
+
+After you followed the instructions in the setup notebook, then you can select from the table below the labs which you want to follow.
 The labs were created to be executed independently of each other.
 
-| Lab                     | Description                                   |
-|-------------------------|-----------------------------------------------|
-| lab01-basics.ipynb      | Basics on how to create agents.               |
-| lab02-models.ipynb      | Using other models than OpenAI for agents.    |
-| lab03-grounding.ipynb   | How to ground agents.                         |
-| lab04-actions.ipynb     | Giving arms and legs for agents.              |
-| lab05-monitoring.ipynb  | Monitoring agents.                            |
-| lab06-multiagents.ipynb | How to implement a multi-agent architecture.  |
-| lab07-bonus.ipynb       | Bonus lab.                                    |
+| Lab                             | Description                                   |
+|---------------------------------------------------------------------------------|
+| lab00-intro+setup.ipynb         | Introduction and setup to notebooks.          |
+| lab01-basics.ipynb              | Basics on how to create agents.               |
+| lab02-models.ipynb              | Using other models than OpenAI for agents.    |
+| lab03-grounding.ipynb           | How to ground agents.                         |
+| lab04-actions.ipynb             | Giving arms and legs for agents.              |
+| lab05-monitoring.ipynb          | Monitoring agents.                            |
+| lab06-multiagents.ipynb         | How to implement a multi-agent architecture.  |
+| lab07-bonus.ipynb               | Bonus lab.                                    |
 
 **Enjoy your lab!** ❤️
