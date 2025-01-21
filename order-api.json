@@ -1,22 +1,56 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.0.0",
   "info": {
-    "title": "Light API",
-    "version": "v1"
+    "title": "Orders API",
+    "version": "1.0.0",
+    "description": "API for managing orders"
   },
+  "servers": [
+    {
+      "url": "https://techconnect-agents.azurewebsites.net/api"
+    }
+  ],
   "paths": {
-    "/Light": {
+    "/orders": {
       "get": {
-        "summary": "Retrieves all lights in the system.",
-        "operationId": "get_all_lights",
+        "summary": "List all orders",
+        "operationId": "get_all_orders",
         "responses": {
           "200": {
-            "description": "Returns a list of lights with their current state",
+            "description": "A list of orders",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Order"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new order",
+        "operationId": "create_new_order",
+        "requestBody": {
+          "required": true,
+          "content": {
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/LightStateModel"
+                "$ref": "#/components/schemas/Order"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Order created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
                 }
               }
             }
@@ -24,45 +58,34 @@
         }
       }
     },
-    "/Light/{id}": {
-      "post": {
-        "summary": "Changes the state of a light.",
-        "operationId": "change_light_state",
+    "/orders/{orderId}": {
+      "get": {
+        "summary": "Fetch an order by ID",
+        "operationId": "get_order_by_id",
         "parameters": [
           {
-            "name": "id",
+            "name": "orderId",
             "in": "path",
-            "description": "The ID of the light to change.",
             "required": true,
-            "style": "simple",
             "schema": {
               "type": "string"
-            }
+            },
+            "description": "ID of the order to fetch"
           }
         ],
-        "requestBody": {
-          "description": "The new state of the light and change parameters.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ChangeStateRequest"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
-            "description": "Returns the updated light state",
+            "description": "Order details",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LightStateModel"
+                  "$ref": "#/components/schemas/Order"
                 }
               }
             }
           },
           "404": {
-            "description": "If the light is not found"
+            "description": "Order not found"
           }
         }
       }
@@ -70,67 +93,25 @@
   },
   "components": {
     "schemas": {
-      "ChangeStateRequest": {
+      "Order": {
         "type": "object",
         "properties": {
-          "isOn": {
-            "type": "boolean",
-            "description": "Specifies whether the light is turned on or off.",
-            "nullable": true
-          },
-          "hexColor": {
+          "orderId": {
             "type": "string",
-            "description": "The hex color code for the light.",
-            "nullable": true
+            "example": "12345"
           },
-          "brightness": {
-            "type": "integer",
-            "description": "The brightness level of the light.",
-            "format": "int32",
-            "nullable": true
+          "price": {
+            "type": "number",
+            "format": "float",
+            "example": 10
           },
-          "fadeDurationInMilliseconds": {
-            "type": "integer",
-            "description": "Duration for the light to fade to the new state, in milliseconds.",
-            "format": "int32",
-            "nullable": true
-          },
-          "scheduledTime": {
+          "orderDate": {
             "type": "string",
-            "description": "Use ScheduledTime to synchronize lights. It's recommended that you asynchronously create tasks for each light that's scheduled to avoid blocking the main thread.",
             "format": "date-time",
-            "nullable": true
+            "example": "2023-01-01T00:00:00Z"
           }
         },
-        "additionalProperties": false,
-        "description": "Represents a request to change the state of the light."
-      },
-      "LightStateModel": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "on": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "brightness": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "hexColor": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
+        "required": ["orderId", "price", "orderDate"]
       }
     }
   }
