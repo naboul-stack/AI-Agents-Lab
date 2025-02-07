@@ -44,7 +44,7 @@ In order to authenticate and execute the notebooks follow the steps below.
 
 # Open Notebooks
 
-👉 All notebooks are located  in the **C:\lab** directory.
+👉 All notebooks are located in the **C:\Users\LabUser\Lab Files** directory.
 
 Open this directory in **Visual Studio Code**, and select the notebook **lab00-intro+setup.ipynb**.
 
