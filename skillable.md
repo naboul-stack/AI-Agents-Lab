@@ -42,6 +42,29 @@ In order to authenticate and execute the notebooks follow the steps below.
 
 ===
 
+# Azure AI Foundry Provisioning
+
+This step should be executed only if the instructors told you to do, because there is know bug that might affect the automatic provisioning process.
+
+Open **Windows Terminal** and navigate to folder **C:\Users\LabUser\Lab Files\Azure**.
+
+If you don't have this folder, clone the repository with the following command:
+
+```console
+git clone --single-branch --depth 1 "https://github.com/gxjorge/AI-Agents-Lab.git" "C:\Users\LabUser\Lab Files"
+```
+
+Execute the command below to provision the required Azure AI Foundry resources. The process takes around 10-15 minutes.
+
+```console
+az deployment group create --resource-group agents-lab --template-file main.bicep --only-show-errors
+```
+
+You should see no error, but if there is any error, then delete the resources and try again.
+
+
+===
+
 # Open Notebooks
 
 👉 All notebooks are located in the **C:\Users\LabUser\Lab Files** directory.
