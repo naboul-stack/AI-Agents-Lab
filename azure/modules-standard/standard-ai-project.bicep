@@ -39,7 +39,7 @@ var aiSearchConnection = ['${acsConnectionName}']
 var aiServiceConnections = ['${aoaiConnectionName}'] */
 
 
-resource aiProject 'Microsoft.MachineLearningServices/workspaces@2023-08-01-preview' = {
+resource aiProject 'Microsoft.MachineLearningServices/workspaces@2024-10-01-preview' = {
   name: aiProjectName
   location: location
   tags: union(tags, {
@@ -70,6 +70,25 @@ resource aiProject 'Microsoft.MachineLearningServices/workspaces@2023-08-01-prev
       storageConnections: storageConnections
     }
   } */
+}
+
+resource waitScript 'Microsoft.Resources/deploymentScripts@2023-08-01' = {
+  name: 'WaitForProjectDeployment'
+  location: location
+  kind: 'AzurePowerShell'
+  properties: {
+    azPowerShellVersion: '10.0'
+    scriptContent: '''
+      Write-Output "Starting wait script..."
+      Start-Sleep -Seconds 120  # Wait for 2 minutes
+      Write-Output "Wait completed. Proceeding with deployment..."
+    '''
+    retentionInterval: 'PT1H'
+    cleanupPreference: 'OnSuccess'
+  }
+  dependsOn: [
+    aiProject
+  ]
 }
 
 output aiProjectName string = aiProject.name
