@@ -29,7 +29,7 @@ In order to authenticate and execute the notebooks follow the steps below.
 2. **Log In to Azure**:
    - Run the following command to log in to your Azure account:
 
-     ```
+     ```console
      az login
      ```
 
@@ -44,7 +44,7 @@ In order to authenticate and execute the notebooks follow the steps below.
 
 # Azure AI Foundry Provisioning
 
-This step should be executed only if the instructors told you to do, because there is know bug that might affect the automatic provisioning process.
+🔴 **This step should be executed only if the instructors told you to do, because there is know bug that might affect the automatic provisioning process.** 🔴
 
 Open **Windows Terminal** and navigate to folder **C:\Users\LabUser\Lab Files\Azure**.
 
