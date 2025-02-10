@@ -69,7 +69,14 @@ You should see no error, but if there is any error, then delete the resources an
 
 👉 All notebooks are located in the **C:\Users\LabUser\Lab Files** directory.
 
-Open this directory in **Visual Studio Code**, and select the notebook **lab00-intro+setup.ipynb**.
+Before anything let's make sure we have the latest version of the notebooks. Execute the commands below on **Windows Terminal**. 
+
+```console
+cd "C:\Users\LabUser\Lab Files"
+git pull
+```
+
+Now open this directory in **Visual Studio Code**, and select the notebook **lab00-intro+setup.ipynb**.
 
 You need to select a **Python kernel** to execute the notebooks. There is already Python installed, with all the required libraries installed.
 Select this kernel, before executing any code.

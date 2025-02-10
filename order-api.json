@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://techconnect-agents.azurewebsites.net/api"
+      "url": "http://techconnect-agents.eastus.cloudapp.azure.com:8080"
     }
   ],
   "paths": {
