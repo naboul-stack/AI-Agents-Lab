@@ -72,6 +72,7 @@ You should see no error, but if there is any error, then delete the resources an
 Before anything let's make sure we have the latest version of the notebooks. Execute the commands below on **Windows Terminal**. 
 
 ```console
+git config --global --add safe.directory 'C:/Users/LabUser/Lab Files'
 cd "C:\Users\LabUser\Lab Files"
 git pull
 ```
