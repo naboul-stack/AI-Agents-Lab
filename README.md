@@ -1,5 +1,31 @@
 # Agents in Action: Transforming through Automation and Intelligence
 
+## Table of Contents
+
+1. [📘 Introduction to Agentic Systems](#introduction-to-agentic-systems)
+2. [🤖 What is an Agent?](#what-is-an-agent)
+   - [Characteristics of Agents](#characteristics-of-agents)
+3. [🚀 Applications of Agentic Systems](#applications-of-agentic-systems)
+   - [Automotive & Transportation](#automotive--transportation)
+   - [Retail & Consumer Packaged Goods](#retail--consumer-packaged-goods)
+   - [Finance](#finance)
+   - [Manufacturing](#manufacturing)
+4. [☁️ Azure AI Agent Service](#azure-ai-agent-service)
+   - [Key Features of Azure AI Agent Service](#key-features-of-azure-ai-agent-service)
+   - [How Azure AI Agent Service Works](#how-azure-ai-agent-service-works)
+   - [Setup](#setup)
+   - [Getting started with the Azure Agent Service with the OpenAI SDK](#getting-started-with-the-azure-agent-service-with-the-openai-sdk)
+   - [Getting started with the Azure AI Foundry SDK](#getting-started-with-the-azure-ai-foundry-sdk)
+   - [Use other models with the Azure AI Agent Service](#use-other-models-with-the-azure-ai-agent-service)
+   - [Grounding with Bing](#grounding-with-bing)
+   - [Actions with Code Interpreter](#actions-with-code-interpreter)
+   - [OpenAPI Actions](#openapi-actions)
+   - [Actions with Azure functions](#actions-with-azure-functions)
+   - [Tracing and monitoring](#tracing-and-monitoring)
+   - [Multi-agent with SK/Autogen](#multi-agent-with-skautogen)
+5. [💼 Bonus exercise: Personal Financial Assistant](#bonus-exercise-personal-financial-assistant)
+6. [📊 Bonus exercise: Sales Analyst Agent](#bonus-exercise-sales-analyst-agent)
+
 ## Introduction to Agentic Systems
 
 In the rapidly evolving field of Artificial Intelligence, agentic systems represent a significant step forward in designing intelligent applications. These systems are composed of autonomous entities, known as *agents*, that can perceive their environment, make decisions, and act upon their environment to achieve specific goals.
@@ -179,6 +205,8 @@ Before creating and running any agents we need to you will need to create a conn
 
 Now set this connection string as an environment variable named *PROJECT_CONNECTION_STRING*
 
+   - [🧾 Notebook Lab00 - Intro and Set Up of Azure AI Agents](lab00-intro+setup.ipynb)  
+
 ### Getting started with the Azure Agent Service with the OpenAI SDK 
 Finally we are able to start executing code.
 
@@ -231,6 +259,8 @@ with AIProjectClient.from_connection_string(
         messages = client.beta.threads.messages.list(thread_id=thread.id)
         print(f"Messages: {messages}")
 ```
+
+   - [🧾 Notebook Lab01 - Basics of Azure AI Agents](lab01-basics.ipynb)  
 
 ### Getting started with the Azure AI Foundry SDK
 
@@ -343,10 +373,8 @@ Now let's create agents using Llama 3 in Azure AI Agents Service. To get started
 
 Feel free to test with other models
 
+   - [🧾 Notebook Lab02 - How to use other models in Azure AI Agent Service](lab02-models.ipynb)  
 
-### Grounding with AI Search
-
-### Grounding with file to assistant API
 
 ### Grounding with Bing
 **Grounding with Bing Search** allows your Azure AI Agents to incorporate real-time public web data when generating responses. You need to create a Grounding with Bing Search resource, and then connect this resource to your Azure AI Agents. When a user sends a query, Azure AI Agents decide if Grounding with Bing Search should be leveraged or not. If so, it will leverage Bing to search over public web data and return relevant chunks. Lastly, Azure AI Agents will use returned chunks to generate a response.  
@@ -476,6 +504,7 @@ print(f"Messages: {messages}")
 >    * According to Grounding with Bing's [terms of use and use and display requirements](https://www.microsoft.com/en-us/bing/apis/grounding-legal#use-and-display-requirements), you need to display both website URLs and Bing search query URLs in your custom interface. You can find website URLs through `annotations` parameter in API response and Bing search query URLs through `runstep` details. To render the webpage, we recommend you replace the endpoint of Bing search query URLs with `www.bing.com` and your Bing search query URL would look like "https://www.bing.com/search?q={search query}"
 >    * Microsoft will use data you send to Grounding with Bing to improve Microsoft products and services. Where you send personal data to this service, you are responsible for obtaining sufficient consent from the data subjects. The Data Protection Terms in the Online Services Terms do not apply to Grounding with Bing. 
 
+   - [🧾 Notebook Lab03 - How to add real-time knowledge to your Azure AI Agent via Bing (tool)](lab02-models.ipynb)  
 
 ### Actions with Code Interpreter
 
@@ -715,13 +744,43 @@ Azure Functions provide support for triggers and bindings, which simplify how yo
 
 Meanwhile, bindings facilitate streamlined connections to input or output data sources, such as databases or APIs, without requiring extensive boilerplate code. For instance, you can configure a trigger to execute an Azure Function whenever a customer message is received in a chatbot and use output bindings to send a response via the Azure AI Agent.
 
-
-
-
+   - [🧾 Notebook Lab04 - How to make your Azure AI Agent act](lab04-actions.ipynb)  
 
 ### Tracing and monitoring
 
+   - [🧾 Notebook Lab05 - Intro to Tracing and Monitoring in Azure AI foundry](lab05-monitoring.ipynb)  
+
 ### Multi-agent with SK/Autogen
+
+   + [🧾 Notebook Lab06 - Building MaS with Azure AI Agents & [Autogen v0.4 (New Autogen Architecture) or SK Agentic Framework)]](lab06-multiagents.ipynb)
+
+   > If you need an in-depth hands-on learning lab about AutoGen and Semantic Kernel agentic frameworks, please visit this GitHub repo: https://github.com/pablosalvador10/gbbai-agent-architecture-lab 
+
+#### **Formula (and Mental Model) for building MaS**
+
+```
+Multi-Agent Architecture = Σ (Production-Ready Single Agents (with tools, memory, traceability, and isolated execution)) + Preferred Framework (Semantic Kernel, AutoGen, etc.)
+```
+
+Always start by breaking down the problem into its fundamental components. Identify the decoupled, modular functions that need to be developed, and then design and build the system from a high-level perspective down to the low-level details. In other words:
+
+**First, build single agents:** Ensure that individual agents are scalable and work reliably for the identified specialized task. Leverage Azure AI Agent Service.
+
+**Then, establish connections between agents, if needed:** Begin constructing inter-agent connections as add-on capabilities. This enables agents to collaborate on tasks—either by directly negotiating or by being indirectly guided toward a common goal. This approach will define your overall architecture and design pattern.
+
+#### **Why Start with Single Agents?**
+
+The `Azure AI Agent Service` makes it straightforward to design agents that are robust, context-aware, and capable of achieving specific goals autonomously. Once these agents successfully handle their tasks as singletons, you can gradually expand them into more complex multi-agent architectures.
+
+**But how do we enable our agents to talk to each other?** In the human world, we might simply put people in the same room to converse naturally. Similarly, agents can be set up to interact and collaborate in virtual rooms, exchanging messages and forming the foundation for advanced, event-driven agent architectures. To achieve this, you can either build your code from scratch or leverage an existing framework. There are many options available, but at Microsoft, we are focusing on two open-source SDKs.
+
+#### **Enable Agent Communication with the Power Duo: Semantic Kernel or AutoGen**
+
+- **AutoGen:**  
+Ideal for creativity and experimentation, AutoGen serves as a state-of-the-art research SDK. It allows you to test new ideas, experiment with collaboration patterns, and push the boundaries of agent capabilities.
+
+- **Semantic Kernel:**  
+Provides an enterprise-grade orchestration framework that supports seamless, non-breaking changes once your ideas are validated. It's designed for production-scale reliability, enabling teams to move quickly without sacrificing stability.
 
 ### Bonus exercise: Personal Financial Assistant
 
